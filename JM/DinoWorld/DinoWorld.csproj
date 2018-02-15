@@ -289,14 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BattleField\Attacks\BaseAttack.cs" />
-    <Compile Include="Assets\Scripts\BattleField\Attacks\BaseAttacks\Hit.cs" />
-    <Compile Include="Assets\Scripts\BattleField\Attacks\FireSkills\BigFlame.cs" />
-    <Compile Include="Assets\Scripts\BattleField\Attacks\FireSkills\Fire.cs" />
-    <Compile Include="Assets\Scripts\BattleField\Attacks\FireSkills\Rape.cs" />
-    <Compile Include="Assets\Scripts\BattleField\Attacks\SkillAttack.cs" />
-    <Compile Include="Assets\Scripts\BattleField\Attacks\WaterSkills\HydroPump.cs" />
-    <Compile Include="Assets\Scripts\BattleField\Attacks\WaterSkills\TailWagging.cs" />
-    <Compile Include="Assets\Scripts\BattleField\Attacks\WaterSkills\WaterCannon.cs" />
+    <Compile Include="Assets\Scripts\BattleField\Attacks\Monster\Hit.cs" />
     <Compile Include="Assets\Scripts\BattleField\BattleState.cs" />
     <Compile Include="Assets\Scripts\BattleField\CharacterMain.cs" />
     <Compile Include="Assets\Scripts\BattleField\CharacterState.cs" />
@@ -312,8 +305,17 @@
     <Compile Include="Assets\Scripts\BattleField\MouseClickListener\PetSkillButton.cs" />
     <Compile Include="Assets\Scripts\BattleField\PetMain.cs" />
     <Compile Include="Assets\Scripts\BattleField\PetState.cs" />
+    <Compile Include="Assets\Scripts\BattleField\Skills\Fire\BigFlame.cs" />
+    <Compile Include="Assets\Scripts\BattleField\Skills\Fire\Fire.cs" />
+    <Compile Include="Assets\Scripts\BattleField\Skills\Fire\TailWagging.cs" />
+    <Compile Include="Assets\Scripts\BattleField\Skills\SkillAttack.cs" />
+    <Compile Include="Assets\Scripts\BattleField\Skills\Water\HydroPump.cs" />
+    <Compile Include="Assets\Scripts\BattleField\Skills\Water\Rape.cs" />
+    <Compile Include="Assets\Scripts\BattleField\Skills\Water\WaterCannon.cs" />
+    <Compile Include="Assets\Scripts\World\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\World\MonsterController.cs" />
     <Compile Include="Assets\Scripts\World\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\World\WorldState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\NejikoBaseAssets\LICENSE.txt" />

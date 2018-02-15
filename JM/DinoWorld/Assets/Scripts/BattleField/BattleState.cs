@@ -33,7 +33,7 @@ public class BattleState : MonoBehaviour {
             case (PerformAction.WAIT):
                 if(PerformList.Count > 0)
                 {
-                    battleStates = PerformAction.TAKEACTION;
+                    battleStates = PerformAction.STOP;
                 }
                 break;
 
@@ -50,7 +50,7 @@ public class BattleState : MonoBehaviour {
                     PetState PS = notPerformer.GetComponent<PetState>();
                     PS.currentState = PetState.TurnState.WAITING;
 
-                    for(int i=0; i<MonstersInBattle.Count; i++)
+                    for(int i = 0; i < MonstersInBattle.Count; i++)
                     {
                         notPerformers = GameObject.Find(MonstersInBattle[i].name);
                         MonsterState MS = notPerformers.GetComponent<MonsterState>();
@@ -130,6 +130,18 @@ public class BattleState : MonoBehaviour {
                 if (nCS.SelectedTarget)
                 {
                     PerformList[0].AttackersTarget = nCS.MonsterToAttack = nCS.SelectedTarget;
+                    if (nCS.attack_or_skill == 1)
+                    {
+                        nCS.which_attack = Random.Range(0, nCS.character.attacks.Count);
+                        nCS.which_attack = Random.Range(0, nCS.character.attacks.Count);
+                        PerformList[0].choosenAttack = nCS.character.attacks[nCS.which_attack];
+                    }
+                    else if (nCS.attack_or_skill == 2)
+                    {
+                        nCS.which_attack = Random.Range(0, nCS.character.skills.Count);
+                        nCS.which_attack = Random.Range(0, nCS.character.skills.Count);
+                        PerformList[0].choosenSkill = nCS.character.skills[nCS.which_attack];
+                    }
                     nCS.currentState = CharacterState.TurnState.ACTION;
                     battleStates = PerformAction.TAKEACTION;
                 }

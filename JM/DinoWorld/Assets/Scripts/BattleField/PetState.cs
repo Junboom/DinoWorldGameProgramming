@@ -12,7 +12,7 @@ public class PetState : MonoBehaviour {
     public TurnState currentState;
 
     private float cur_cooldown;
-    private float max_cooldown = 472.0f;
+    private float max_cooldown;
 
     private Vector3 startPosition;
 
@@ -24,6 +24,7 @@ public class PetState : MonoBehaviour {
     private bool alive = true;
 
     public Image ProgressBar;
+    public Image ProgressBarEnd;
     private Vector3 startBarPosition;
     public Text DamageText;
 
@@ -50,6 +51,7 @@ public class PetState : MonoBehaviour {
         BS = GameObject.Find("BattleManager").GetComponent<BattleState>();
         startPosition = transform.position;
         startBarPosition = ProgressBar.transform.position;
+        max_cooldown = ProgressBarEnd.transform.position.x - 1.5f;
         PetMenu.SetActive(false);
     }
 

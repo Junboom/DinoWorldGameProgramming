@@ -12,7 +12,7 @@ public class CharacterState : MonoBehaviour {
     public TurnState currentState;
 
     private float cur_cooldown;
-    private float max_cooldown = 472.0f;
+    private float max_cooldown;
 
     private Vector3 startPosition;
 
@@ -24,6 +24,7 @@ public class CharacterState : MonoBehaviour {
     private bool alive = true;
 
     public Image ProgressBar;
+    public Image ProgressBarEnd;
     private Vector3 startBarPosition;
     public Text DamageText;
 
@@ -51,6 +52,7 @@ public class CharacterState : MonoBehaviour {
         BS = GameObject.Find("BattleManager").GetComponent<BattleState>();
         startPosition = transform.position;
         startBarPosition = ProgressBar.transform.position;
+        max_cooldown = ProgressBarEnd.transform.position.x - 1.5f;
         CharacterMenu.SetActive(false);
     }
 	
@@ -159,18 +161,6 @@ public class CharacterState : MonoBehaviour {
         myAttack.Type = "Character";
         myAttack.AttackersGameObject = this.gameObject;
         myAttack.AttackersTarget = SelectedTarget;
-
-        // attack_or_skill = Random.Range(0, 2);
-        if (attack_or_skill == 1)
-        {
-            which_attack = Random.Range(0, character.attacks.Count);
-            myAttack.choosenAttack = character.attacks[which_attack];
-        }
-        else
-        {
-            which_attack = Random.Range(0, character.skills.Count);
-            myAttack.choosenSkill = character.skills[which_attack];
-        }
         BS.CollectActions(myAttack);
 
         currentState = TurnState.STOP;

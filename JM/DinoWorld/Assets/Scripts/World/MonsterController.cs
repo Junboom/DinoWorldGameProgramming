@@ -1,25 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityStandardAssets.Characters.FirstPerson;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class MonsterController : MonoBehaviour {
-
 
     public PlayerController Pstate;
     public GameObject Player;
     private NavMeshAgent nav;
     private string state = "idle";
     private bool alive = true;
-    public static float fightdurationTime = 5f;
-    public float monsterAmount = 0;
 
     private float alertness = 40f;
     public Transform eyes;
 
+    private WorldState WS;
+
     void Start()
     {
+        WS = GameObject.Find("WorldManager").GetComponent<WorldState>();
+
         nav = GetComponent<NavMeshAgent>();
     }
 
@@ -28,41 +26,41 @@ public class MonsterController : MonoBehaviour {
     {
         if (alive)
         {
-
             if (state == "idle")
             {
-
                 Vector3 randomPos = Random.insideUnitSphere * alertness;
                 NavMeshHit navHit;
                 NavMesh.SamplePosition(transform.position + randomPos, out navHit, 20f, NavMesh.AllAreas);
                 nav.SetDestination(navHit.position);
-
             }
         }
-        Debug.Log(monsterAmount);
+        // Debug.Log(monsterAmount);
         // Debug.Log(state);
-
 
         if (state == "fight")
         {
-            fightdurationTime -= Time.deltaTime;
-        }
-        Debug.Log(fightdurationTime + "지속시간");
-    }
+            WS.worldStates = WorldState.PerformSituation.ADDLIST;
 
+            state = "stop";
+        }
+
+        if(state == "stop")
+        {
+
+        }
+    }
 
     void OnMouseUp()
     {
-        Debug.Log("후아웋아ㅜ항ㅁㄴ후아");
-        if (gameObject.tag == "mon")
+        if (gameObject.tag == "mon" && state == "idle")
         {
             Pstate.Pstate = "fight";
             state = "fight";
-            nav.SetDestination(Player.transform.position);
-            monsterAmount++;
 
-
-
+            Vector3 PlayerPosition = new Vector3(WS.Player.transform.position.x,
+                                                 WS.Player.transform.position.y,
+                                                 WS.Player.transform.position.z + WS.MonsterCount + 1);
+            nav.SetDestination(PlayerPosition);
         }
     }
 
@@ -71,17 +69,15 @@ public class MonsterController : MonoBehaviour {
         if (alive)
         {
             RaycastHit rayhit;
-            if (Physics.Linecast(eyes.position, Player.transform.position, out rayhit) && fightdurationTime > 0)
+            if (Physics.Linecast(eyes.position, Player.transform.position, out rayhit) && state == "idle")
             {
-                Debug.Log(Pstate.Pstate + " 플레이어머냐");
                 state = "fight";
-                print("hit" + rayhit.collider.gameObject.name);
-                nav.SetDestination(Player.transform.position);
-                monsterAmount++;
-
+                // print("hit" + rayhit.collider.gameObject.name);
+                Vector3 PlayerPosition = new Vector3(WS.Player.transform.position.x,
+                                                     WS.Player.transform.position.y,
+                                                     WS.Player.transform.position.z + WS.MonsterCount);
+                nav.SetDestination(PlayerPosition);
             }
         }
     }
-
-
 }
