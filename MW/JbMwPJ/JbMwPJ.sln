@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JbMwPJ", "JbMwPJ.csproj", "{00C5046D-E6D3-CD09-B512-600DA849DFAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JbMwPJ.Editor", "JbMwPJ.Editor.csproj", "{127FA802-1822-F781-8A49-F50F8618B3CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00C5046D-E6D3-CD09-B512-600DA849DFAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00C5046D-E6D3-CD09-B512-600DA849DFAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00C5046D-E6D3-CD09-B512-600DA849DFAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00C5046D-E6D3-CD09-B512-600DA849DFAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{127FA802-1822-F781-8A49-F50F8618B3CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{127FA802-1822-F781-8A49-F50F8618B3CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{127FA802-1822-F781-8A49-F50F8618B3CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{127FA802-1822-F781-8A49-F50F8618B3CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
