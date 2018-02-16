@@ -20,7 +20,6 @@ public class ChangeScene : MonoBehaviour {
     public void WorldToBattle()
     {
         WorldCamera.enabled = false;
-        WorldCamera.enabled = false;
         BattleCamera.enabled = true;
         BattleCanvas.enabled = true;
 

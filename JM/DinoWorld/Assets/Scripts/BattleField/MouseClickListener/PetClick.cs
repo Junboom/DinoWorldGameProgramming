@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class PetClick : MonoBehaviour {
 
@@ -7,6 +6,7 @@ public class PetClick : MonoBehaviour {
 
     public GameObject CharacterMenu;
     public GameObject CharacterInfo;
+    public GameObject CharacterSkillMenu;
 
     public GameObject PetMenu;
     public GameObject PetInfo;
@@ -19,7 +19,6 @@ public class PetClick : MonoBehaviour {
     private void OnMouseEnter()
     {
         PS.TextSetting();
-        CharacterMenu.SetActive(false);
         CharacterInfo.SetActive(false);
         PetInfo.SetActive(true);
     }
@@ -32,15 +31,19 @@ public class PetClick : MonoBehaviour {
 
     public void OnMouseDown()
     {
-        if (!PetMenu.activeSelf)
+        if (PS.attack_or_skill != 0)
         {
-            CharacterMenu.SetActive(false);
-            CharacterInfo.SetActive(false);
-            PetMenu.SetActive(true);
-        }
-        else
-        {
-            PetMenu.SetActive(false);
+            if (!PetMenu.activeSelf)
+            {
+                CharacterMenu.SetActive(false);
+                CharacterInfo.SetActive(false);
+                CharacterSkillMenu.SetActive(false);
+                PetMenu.SetActive(true);
+            }
+            else
+            {
+                PetMenu.SetActive(false);
+            }
         }
     }
 }

@@ -23,6 +23,8 @@ public class PetState : MonoBehaviour {
 
     private bool alive = true;
 
+    public Image PetHP;
+    public Image PetMP;
     public Image ProgressBar;
     public Image ProgressBarEnd;
     private Vector3 startBarPosition;
@@ -39,7 +41,8 @@ public class PetState : MonoBehaviour {
     public Text PetHPText;
     public Text PetMPText;
 
-    public int attack_or_skill, which_attack;
+    public int attack_or_skill;
+    public int which_skill;
     int calc_damage;
 
     // Use this for initialization
@@ -106,6 +109,7 @@ public class PetState : MonoBehaviour {
                     }
 
                     gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
+                    ProgressBar.color = new Color32(105, 105, 105, 0);
 
                     alive = false;
                 }
@@ -127,11 +131,26 @@ public class PetState : MonoBehaviour {
     public void TextSetting()
     {
         PetName.text = pet.PetName;
+        
+        if (pet.curHP > pet.baseHP)
+        {
+            pet.curHP = pet.baseHP;
+        }
+        if (pet.curMP > pet.baseMP)
+        {
+            pet.curMP = pet.baseMP;
+        }
 
         PetHPText.text = pet.curHP + " / " + pet.baseHP;
         PetHPText.fontStyle = FontStyle.Bold;
         PetMPText.text = pet.curMP + " / " + pet.baseMP;
         PetMPText.fontStyle = FontStyle.Bold;
+
+        float remainHP = (pet.curHP + 0.01f) / (pet.baseHP + 0.01f);
+        float remainMP = (pet.curMP + 0.01f) / (pet.baseMP + 0.01f);
+
+        PetHP.transform.localScale = new Vector3(remainHP, PetHP.transform.localScale.y, PetHP.transform.localScale.z);
+        PetMP.transform.localScale = new Vector3(remainMP, PetMP.transform.localScale.y, PetMP.transform.localScale.z);
     }
 
     void UpgradeProgressBar()
@@ -160,18 +179,6 @@ public class PetState : MonoBehaviour {
         myAttack.Type = "Pet";
         myAttack.AttackersGameObject = this.gameObject;
         myAttack.AttackersTarget = SelectedTarget;
-
-        // attack_or_skill = Random.Range(0, 2);
-        if (attack_or_skill == 1)
-        {
-            which_attack = Random.Range(0, pet.attacks.Count);
-            myAttack.choosenAttack = pet.attacks[which_attack];
-        }
-        else
-        {
-            which_attack = Random.Range(0, pet.skills.Count);
-            myAttack.choosenSkill = pet.skills[which_attack];
-        }
         BS.CollectActions(myAttack);
 
         currentState = TurnState.STOP;
@@ -242,6 +249,9 @@ public class PetState : MonoBehaviour {
         BS.battleStates = BattleState.PerformAction.WAIT;
 
         actionStarted = false;
+
+        attack_or_skill = 0;
+        which_skill = 0;
 
         cur_cooldown = 0f;
         SelectedTarget = null;

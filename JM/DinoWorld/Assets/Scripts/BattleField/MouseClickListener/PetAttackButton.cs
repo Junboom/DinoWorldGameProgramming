@@ -8,6 +8,7 @@ public class PetAttackButton : MonoBehaviour
     private PetState PS;
 
     public GameObject PetMenu;
+    public GameObject PetSkillMenu;
 
     private void Start()
     {
@@ -21,5 +22,6 @@ public class PetAttackButton : MonoBehaviour
     {
         PS.attack_or_skill = 1;
         PetMenu.SetActive(false);
+        PetSkillMenu.SetActive(false);
     }
 }

@@ -33,7 +33,14 @@ public class BattleState : MonoBehaviour {
             case (PerformAction.WAIT):
                 if(PerformList.Count > 0)
                 {
-                    battleStates = PerformAction.STOP;
+                    if(PerformList[0].Type == "Monster")
+                    {
+                        battleStates = PerformAction.TAKEACTION;
+                    }
+                    else
+                    {
+                        battleStates = PerformAction.STOP;
+                    }
                 }
                 break;
 
@@ -132,24 +139,56 @@ public class BattleState : MonoBehaviour {
                     PerformList[0].AttackersTarget = nCS.MonsterToAttack = nCS.SelectedTarget;
                     if (nCS.attack_or_skill == 1)
                     {
-                        nCS.which_attack = Random.Range(0, nCS.character.attacks.Count);
-                        nCS.which_attack = Random.Range(0, nCS.character.attacks.Count);
-                        PerformList[0].choosenAttack = nCS.character.attacks[nCS.which_attack];
+                        nCS.which_skill = 0;
+                        PerformList[0].choosenAttack = nCS.character.attacks[nCS.which_skill];
+                        nCS.currentState = CharacterState.TurnState.ACTION;
+                        battleStates = PerformAction.TAKEACTION;
                     }
                     else if (nCS.attack_or_skill == 2)
                     {
-                        nCS.which_attack = Random.Range(0, nCS.character.skills.Count);
-                        nCS.which_attack = Random.Range(0, nCS.character.skills.Count);
-                        PerformList[0].choosenSkill = nCS.character.skills[nCS.which_attack];
+                        nCS.character.curMP -= nCS.character.skills[nCS.which_skill].skillCost;
+                        if(nCS.character.curMP < 0)
+                        {
+                            Debug.Log("기술을 사용하기 위한 기력이 충분하지 않습니다.");
+                            nCS.character.curMP += nCS.character.skills[nCS.which_skill].skillCost;
+                            nCS.attack_or_skill = 3;
+                            nCS.SelectedTarget = null;
+                        }
+                        else
+                        {
+                            PerformList[0].choosenSkill = nCS.character.skills[nCS.which_skill];
+                            nCS.currentState = CharacterState.TurnState.ACTION;
+                            battleStates = PerformAction.TAKEACTION;
+                        }
                     }
-                    nCS.currentState = CharacterState.TurnState.ACTION;
-                    battleStates = PerformAction.TAKEACTION;
                 }
                 else if(nPS.SelectedTarget)
                 {
                     PerformList[0].AttackersTarget = nPS.MonsterToAttack = nPS.SelectedTarget;
-                    nPS.currentState = PetState.TurnState.ACTION;
-                    battleStates = PerformAction.TAKEACTION;
+                    if (nPS.attack_or_skill == 1)
+                    {
+                        nPS.which_skill = 0;
+                        PerformList[0].choosenAttack = nPS.pet.attacks[nPS.which_skill];
+                        nPS.currentState = PetState.TurnState.ACTION;
+                        battleStates = PerformAction.TAKEACTION;
+                    }
+                    else if(nPS.attack_or_skill == 2)
+                    {
+                        nPS.pet.curMP -= nPS.pet.skills[nPS.which_skill].skillCost;
+                        if (nPS.pet.curMP < 0)
+                        {
+                            Debug.Log("기술을 사용하기 위한 기력이 충분하지 않습니다.");
+                            nPS.pet.curMP += nPS.pet.skills[nPS.which_skill].skillCost;
+                            nPS.attack_or_skill = 3;
+                            nPS.SelectedTarget = null;
+                        }
+                        else
+                        {
+                            PerformList[0].choosenSkill = nPS.pet.skills[nPS.which_skill];
+                            nPS.currentState = PetState.TurnState.ACTION;
+                            battleStates = PerformAction.TAKEACTION;
+                        }
+                    }
                 }
                 break;
 

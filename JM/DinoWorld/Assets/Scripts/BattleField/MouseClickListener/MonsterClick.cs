@@ -14,6 +14,8 @@ public class MonsterClick : MonoBehaviour {
     void Start()
     {
         BS = GameObject.Find("BattleManager").GetComponent<BattleState>();
+        CS = GameObject.Find("Character").GetComponent<CharacterState>();
+        PS = GameObject.Find("Pet001").GetComponent<PetState>();
     }
 
     private void OnMouseEnter()
@@ -30,15 +32,22 @@ public class MonsterClick : MonoBehaviour {
     private void OnMouseDown()
     {
         GameObject performer = GameObject.Find(BS.PerformList[0].Attacker);
-        if(BS.PerformList[0].Type == "Character")
+
+        if (BS.PerformList[0].Type == "Character")
         {
-            CS = performer.GetComponent<CharacterState>();
-            CS.SelectedTarget = this.gameObject;
+            if (CS.attack_or_skill != 0)
+            {
+                CS = performer.GetComponent<CharacterState>();
+                CS.SelectedTarget = this.gameObject;
+            }
         }
         else
         {
-            PS = performer.GetComponent<PetState>();
-            PS.SelectedTarget = this.gameObject;
+            if (PS.attack_or_skill != 0)
+            {
+                PS = performer.GetComponent<PetState>();
+                PS.SelectedTarget = this.gameObject;
+            }
         }
     }
 }

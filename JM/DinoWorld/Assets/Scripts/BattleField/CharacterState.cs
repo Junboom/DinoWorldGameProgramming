@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class CharacterState : MonoBehaviour {
 
     private BattleState BS;
+    private ChangeScene SceneChange;
     public CharacterMain character;
 
     public enum TurnState { PROCESSING, CHOOSEACTION, STOP, WAITING, ACTION, REVERSE, DEAD }
@@ -23,6 +24,8 @@ public class CharacterState : MonoBehaviour {
 
     private bool alive = true;
 
+    public Image CharacterHP;
+    public Image CharacterMP;
     public Image ProgressBar;
     public Image ProgressBarEnd;
     private Vector3 startBarPosition;
@@ -39,8 +42,8 @@ public class CharacterState : MonoBehaviour {
     public Text CharacterHPText;
     public Text CharacterMPText;
 
-    public int attack_or_skill = 0;
-    public int which_attack;
+    public int attack_or_skill;
+    public int which_skill;
     int calc_damage;
 
     // Use this for initialization
@@ -106,7 +109,8 @@ public class CharacterState : MonoBehaviour {
                         }
                     }
 
-                    gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
+                    SceneChange = GameObject.Find("ChangeSceneManager").GetComponent<ChangeScene>();
+                    SceneChange.BattleToWorld();
 
                     alive = false;
                 }
@@ -129,10 +133,25 @@ public class CharacterState : MonoBehaviour {
     {
         CharacterName.text = character.CharaterName;
 
+        if (character.curHP > character.baseHP)
+        {
+            character.curHP = character.baseHP;
+        }
+        if (character.curMP > character.baseMP)
+        {
+            character.curMP = character.baseMP;
+        }
+
         CharacterHPText.text = character.curHP + " / " + character.baseHP;
         CharacterHPText.fontStyle = FontStyle.Bold;
         CharacterMPText.text = character.curMP + " / " + character.baseMP;
         CharacterMPText.fontStyle = FontStyle.Bold;
+
+        float remainHP = (character.curHP+0.01f) / (character.baseHP+0.01f);
+        float remainMP = (character.curMP+0.01f) / (character.baseMP+0.01f);
+        
+        CharacterHP.transform.localScale = new Vector3(remainHP, CharacterHP.transform.localScale.y, CharacterHP.transform.localScale.z);
+        CharacterMP.transform.localScale = new Vector3(remainMP, CharacterMP.transform.localScale.y, CharacterMP.transform.localScale.z);
     }
 
     void UpgradeProgressBar()
@@ -231,6 +250,9 @@ public class CharacterState : MonoBehaviour {
         BS.battleStates = BattleState.PerformAction.WAIT;
 
         actionStarted = false;
+
+        attack_or_skill = 0;
+        which_skill = 0;
 
         cur_cooldown = 0f;
         SelectedTarget = null;

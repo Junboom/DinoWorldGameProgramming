@@ -401,7 +401,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pstate: {fileID: 334665406}
   Player: {fileID: 334665405}
-  monsterAmount: 0
   eyes: {fileID: 987406111}
 --- !u!65 &471038181
 BoxCollider:
@@ -1295,7 +1294,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pstate: {fileID: 334665406}
   Player: {fileID: 334665405}
-  monsterAmount: 0
   eyes: {fileID: 1447695818}
 --- !u!65 &1594567850
 BoxCollider:
@@ -1473,7 +1471,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pstate: {fileID: 334665406}
   Player: {fileID: 334665405}
-  monsterAmount: 0
   eyes: {fileID: 1062958676}
 --- !u!65 &1612124837
 BoxCollider:
@@ -1542,7 +1539,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pstate: {fileID: 334665406}
   Player: {fileID: 334665405}
-  monsterAmount: 0
   eyes: {fileID: 892159625}
 --- !u!195 &1618647160
 NavMeshAgent:

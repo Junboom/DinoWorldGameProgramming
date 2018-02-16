@@ -27,8 +27,9 @@ public class MonsterState : MonoBehaviour {
     private Vector3 startBarPosition;
     public Text DamageText;
 
-    int attack_or_skill, which_attack;
-    int calc_damage;
+    private int attack_or_skill;
+    private int which_skill;
+    private int calc_damage;
 
     // Use this for initialization
     void Start()
@@ -129,20 +130,18 @@ public class MonsterState : MonoBehaviour {
         myAttack.AttackersGameObject = this.gameObject;
         myAttack.AttackersTarget = BS.ForcesInBattle[Random.Range(0, BS.ForcesInBattle.Count)];
 
-        attack_or_skill = Random.Range(0, 2);
-        if (attack_or_skill == 0)
+        attack_or_skill = Random.Range(1, 3);
+        if (attack_or_skill == 1)
         {
-            which_attack = Random.Range(0, monster.attacks.Count);
-            myAttack.choosenAttack = monster.attacks[which_attack];
+            which_skill = 0;
+            myAttack.choosenAttack = monster.attacks[which_skill];
         }
         else
         {
-            which_attack = Random.Range(0, monster.skills.Count);
-            myAttack.choosenSkill = monster.skills[which_attack];
+            which_skill = Random.Range(0, monster.skills.Count);
+            myAttack.choosenSkill = monster.skills[which_skill];
         }
         BS.CollectActions(myAttack);
-
-        // currentState = TurnState.STOP;
     }
 
     private IEnumerator TimeForAction()
@@ -210,6 +209,9 @@ public class MonsterState : MonoBehaviour {
         BS.battleStates = BattleState.PerformAction.WAIT;
 
         actionStarted = false;
+
+        attack_or_skill = 0;
+        which_skill = 0;
 
         cur_cooldown = 0f;
         currentState = TurnState.REVERSE;

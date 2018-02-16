@@ -9,6 +9,7 @@ public class CharacterClick : MonoBehaviour {
 
     public GameObject PetMenu;
     public GameObject PetInfo;
+    public GameObject PetSkillMenu;
 
     private void Start()
     {
@@ -19,7 +20,6 @@ public class CharacterClick : MonoBehaviour {
     {
         CS.TextSetting();
         CharacterInfo.SetActive(true);
-        PetMenu.SetActive(false);
         PetInfo.SetActive(false);
     }
 
@@ -31,15 +31,19 @@ public class CharacterClick : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        if (!CharacterMenu.activeSelf)
+        if (CS.attack_or_skill != 0)
         {
-            CharacterMenu.SetActive(true);
-            PetMenu.SetActive(false);
-            PetInfo.SetActive(false);
-        }
-        else
-        {
-            CharacterMenu.SetActive(false);
+            if (!CharacterMenu.activeSelf)
+            {
+                CharacterMenu.SetActive(true);
+                PetMenu.SetActive(false);
+                PetInfo.SetActive(false);
+                PetSkillMenu.SetActive(false);
+            }
+            else
+            {
+                CharacterMenu.SetActive(false);
+            }
         }
     }
 }

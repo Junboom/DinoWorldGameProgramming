@@ -298,13 +298,17 @@
     <Compile Include="Assets\Scripts\BattleField\MonsterState.cs" />
     <Compile Include="Assets\Scripts\BattleField\MouseClickListener\CharacterAttackButton.cs" />
     <Compile Include="Assets\Scripts\BattleField\MouseClickListener\CharacterClick.cs" />
+    <Compile Include="Assets\Scripts\BattleField\MouseClickListener\CharacterRunButton.cs" />
     <Compile Include="Assets\Scripts\BattleField\MouseClickListener\CharacterSkillButton.cs" />
+    <Compile Include="Assets\Scripts\BattleField\MouseClickListener\CharacterUsingSkill.cs" />
     <Compile Include="Assets\Scripts\BattleField\MouseClickListener\MonsterClick.cs" />
     <Compile Include="Assets\Scripts\BattleField\MouseClickListener\PetAttackButton.cs" />
     <Compile Include="Assets\Scripts\BattleField\MouseClickListener\PetClick.cs" />
     <Compile Include="Assets\Scripts\BattleField\MouseClickListener\PetSkillButton.cs" />
+    <Compile Include="Assets\Scripts\BattleField\MouseClickListener\PetUsingSkill.cs" />
     <Compile Include="Assets\Scripts\BattleField\PetMain.cs" />
     <Compile Include="Assets\Scripts\BattleField\PetState.cs" />
+    <Compile Include="Assets\Scripts\BattleField\Skills\Character\Heal.cs" />
     <Compile Include="Assets\Scripts\BattleField\Skills\Fire\BigFlame.cs" />
     <Compile Include="Assets\Scripts\BattleField\Skills\Fire\Fire.cs" />
     <Compile Include="Assets\Scripts\BattleField\Skills\Fire\TailWagging.cs" />

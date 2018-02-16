@@ -8,6 +8,7 @@ public class CharacterAttackButton : MonoBehaviour
     private CharacterState CS;
 
     public GameObject CharacterMenu;
+    public GameObject CharacterSkillMenu;
 
     private void Start()
     {
@@ -21,5 +22,6 @@ public class CharacterAttackButton : MonoBehaviour
     {
         CS.attack_or_skill = 1;
         CharacterMenu.SetActive(false);
+        CharacterSkillMenu.SetActive(false);
     }
 }
