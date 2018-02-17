@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WorldState : MonoBehaviour {
+
+    private BattleState BS;
 
     public enum PerformSituation { WAIT, COUNTING, ADDLIST }
 
@@ -19,6 +22,8 @@ public class WorldState : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        BS = GameObject.Find("BattleManager").GetComponent<BattleState>();
+
         worldStates = PerformSituation.WAIT;
 
         SceneChange = GameObject.Find("ChangeSceneManager").GetComponent<ChangeScene>();
@@ -49,6 +54,14 @@ public class WorldState : MonoBehaviour {
                     fightDurationTime = 5f;
 
                     worldStates = PerformSituation.WAIT;
+                    
+                    for (int i = 4; i > MonsterCount; i--)
+                    {
+                        GameObject RemovedMonster = GameObject.Find("Monster00" + Convert.ToString(i));
+                        BS.MonstersInBattle.Remove(RemovedMonster);
+                        Destroy(RemovedMonster);
+                    }
+
                     SceneChange.WorldToBattle();
                 }
                 break;

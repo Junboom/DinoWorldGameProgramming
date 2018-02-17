@@ -7,9 +7,11 @@ public class ChangeScene : MonoBehaviour {
     private Camera BattleCamera;
     private Canvas BattleCanvas;
 
+    public Scene BattleField;
+    public Scene World;
+
     void Start()
     {
-        WorldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         BattleCamera = GameObject.Find("BattleCamera").GetComponent<Camera>();
         BattleCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
 
@@ -19,15 +21,21 @@ public class ChangeScene : MonoBehaviour {
 
     public void WorldToBattle()
     {
-        WorldCamera.enabled = false;
+        // WorldCamera.enabled = false;
         BattleCamera.enabled = true;
         BattleCanvas.enabled = true;
 
+        SceneManager.UnloadScene(World);
         SceneManager.LoadScene("BattleField");
     }
 
     public void BattleToWorld()
     {
+        // WorldCamera.enabled = true;
+        BattleCamera.enabled = false;
+        BattleCanvas.enabled = false;
+
+        SceneManager.UnloadScene(BattleField);
         SceneManager.LoadScene("World");
     }
 }
