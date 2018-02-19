@@ -71,7 +71,10 @@ public class WorldState : MonoBehaviour {
                 fightDurationTime = 5f;
                 fightTimeCount = 5;
                 worldStates = PerformSituation.COUNTING;
+                Debug.Log("ㅎㅇㅎㅇㅎㅇㅎㅇ");
                 break;
+
+
         }
     }
 }
