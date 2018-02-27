@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4430066, g: 0.49219555, b: 0.571924, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300684, g: 0.49219567, b: 0.5719244, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -204,7 +204,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
+<<<<<<< HEAD
   m_Color: {r: 0.88235295, g: 1, b: 0.78431374, a: 1}
+=======
+  m_Color: {r: 0.41176474, g: 1, b: 1, a: 1}
+>>>>>>> f47c01d6f4270c46b6211313abc2864b3673392a
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1499,7 +1503,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
+<<<<<<< HEAD
   m_Color: {r: 0.88235295, g: 1, b: 0.78431374, a: 1}
+=======
+  m_Color: {r: 0.41176474, g: 1, b: 1, a: 1}
+>>>>>>> f47c01d6f4270c46b6211313abc2864b3673392a
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1626,7 +1634,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
+<<<<<<< HEAD
   m_Color: {r: 0.88235295, g: 1, b: 0.78431374, a: 1}
+=======
+  m_Color: {r: 0.41176474, g: 1, b: 1, a: 1}
+>>>>>>> f47c01d6f4270c46b6211313abc2864b3673392a
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2273,7 +2285,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
+<<<<<<< HEAD
   m_Color: {r: 0.88235295, g: 1, b: 0.78431374, a: 1}
+=======
+  m_Color: {r: 0.41176474, g: 1, b: 1, a: 1}
+>>>>>>> f47c01d6f4270c46b6211313abc2864b3673392a
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
